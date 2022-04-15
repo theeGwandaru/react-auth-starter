@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { PrivateRoute } from './auth/PrivateRoute';
 import { HomePage } from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -7,15 +7,15 @@ import SignupPage from './pages/SignupPage';
 function App() {
   return (
     <>
-      <Router>
+      <BrowserRouter>
         <Switch>
-          <PrivateRoute path="/" exact>
-            <Route path=''><HomePage /></Route>
-          </PrivateRoute>
-          <Route path='/login'><LoginPage/></Route>
-          <Route path='/signup'><SignupPage/></Route>
+          <Route path='/login' exact><LoginPage /></Route>
+          <Route path='/signup' exact><SignupPage /></Route>
         </Switch>
-      </Router>
+        <PrivateRoute path="/">
+          <Route path='/' exact><HomePage /></Route>
+        </PrivateRoute>
+      </BrowserRouter>
     </>
   );
 }
